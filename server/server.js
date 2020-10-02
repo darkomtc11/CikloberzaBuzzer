@@ -6,7 +6,7 @@ const app = express();
 
 app.use(cors())
 app.get("/", function (req, res) {
-    fetch("https://www.2bike.rs/cikloberza/mali-oglasi/bicikli-6/mtb-bicikli-7?&fl11[]=38&fl11[]=50&fl11[]=51&fl11[]=62&fl11[]=63&fl11[]=null&fl15[]=95&fl15[]=null&prcu=EUR&prfr=398&prto=607&hideSold=1", {
+    fetch(decodeURI(req.query.searchUrl), {
         "headers": {
             "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
             "accept-language": "en-US,en;q=0.9",
@@ -27,13 +27,9 @@ app.get("/", function (req, res) {
         .then((x) => {console.log(); return HTMLParser.parse(x)})
         .then((html) => {
             const total = Number(html.querySelector(".pagingWrapper").querySelector('.total').childNodes[4].childNodes[0].rawText);
-            return res.json(total == Number(req.query.total));
+            return res.json(total >= Number(req.query.total));
         });
 });
-
-app.get("/test", (req, res)=>{
-    return res.json(true);
-})
 
 app.listen(3000);
 
