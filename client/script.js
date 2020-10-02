@@ -1,7 +1,6 @@
 const a = new Audio('./ring.wav');
 a.volume = 0.5;
-const indicator = document.querySelector("#indicator");
-indicator.classList.replace('green', 'red');
+document.body.classList.add('red');
 
 function doIt() {
   const total = document.querySelector('#total').value;
@@ -19,9 +18,9 @@ function doIt() {
     }).then(value => {
       if (value) {
         a.play();
-        indicator.classList.replace('red', 'green');
+        document.body.classList.replace('red', 'green');
       } else {
-        indicator.classList.replace('green', 'red');
+        document.body.classList.replace('green', 'red');
       }
     })
   }
