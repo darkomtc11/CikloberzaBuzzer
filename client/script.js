@@ -1,10 +1,12 @@
 const a = new Audio('./ring.wav');
 a.volume = 0.5;
 document.body.classList.add('red');
+const totalInput = document.querySelector('#total');
+const searchUrlInput = document.querySelector('#searchUrl');
 
 function doIt() {
-  const total = document.querySelector('#total').value;
-  const searchUrl = encodeURI(document.querySelector('#searchUrl').value);
+  const total = totalInput.value;
+  const searchUrl = encodeURI(searchUrlInput.value);
 
   var url = new URL('http://localhost:3000')
 
@@ -34,6 +36,10 @@ function doItAgainAndAgain() {
   interval = setInterval(() => {
     doIt();
   }, 30000);
+}
+
+function visitSite() {
+  window.open(searchUrlInput.value, '_blank').focus();
 }
 
 doItAgainAndAgain();
