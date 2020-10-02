@@ -26,7 +26,7 @@ app.get("/", function (req, res) {
         .then((x) => {return x.text();})
         .then((x) => {console.log(); return HTMLParser.parse(x)})
         .then((html) => {
-            const total = Number(html.querySelector(".pagingWrapper").querySelector('.total').childNodes[4].childNodes[0].rawText);
+            const total = Number(html.querySelector(".pagingWrapper .total").childNodes[4].childNodes[0].rawText);
             return res.json(total >= Number(req.query.total));
         });
 });
