@@ -1,4 +1,4 @@
-const a = new Audio('https://freesound.org/people/JapanYoshiTheGamer/sounds/423219/download/423219__japanyoshithegamer__quiz-show-buzzer-2.wav');
+const a = new Audio('./ring.wav');
 a.volume = 0.5;
 const indicator = document.querySelector("#indicator");
 indicator.classList.replace('green', 'red');
